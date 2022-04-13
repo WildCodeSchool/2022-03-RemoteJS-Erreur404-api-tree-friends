@@ -1,11 +1,11 @@
 import React from "react";
 
-function Home() {
+function Game() {
   return (
     <div>
-      <p>Blabla</p>
+      <p>Let's Play</p>
     </div>
   );
 }
 
-export default Home;
+export default Game;
