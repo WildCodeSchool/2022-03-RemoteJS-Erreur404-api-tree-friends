@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+//assets
 import logo from "../assets/alt-logo.png";
-import Movie from "../components/Movie";
 import dice from "../assets/dice.png";
+//components
+import Movie from "../components/Movie";
+
 
 function Settings() {
   const [movieStart, setMovieStart] = useState();
