@@ -1,0 +1,23 @@
+/* const Button = styled.button` */
+.start-button {
+  display: flex;
+  justify-content: center;
+  width: 165px;
+  height: 45px;
+  left: 75px;
+  top: 465px;
+  background: #eb910a;
+  color: white;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 25px;
+  font-weight: bold;
+}
+
+.button-arrow {
+  width: 0;
+  height: 0;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  border-left: 12px solid white;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
