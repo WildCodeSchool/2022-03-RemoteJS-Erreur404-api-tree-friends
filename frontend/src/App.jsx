@@ -1,10 +1,11 @@
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// Import des composants
 import Home from "@pages/Home";
+import Error from "@pages/Error";
 import Settings from "@pages/Settings";
 import Game from "@pages/Game";
 import Results from "@pages/Results";
-import Error from "@pages/Error";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import "./App.css";
 
