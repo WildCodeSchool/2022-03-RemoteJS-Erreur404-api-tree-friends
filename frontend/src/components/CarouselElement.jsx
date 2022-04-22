@@ -10,9 +10,7 @@ function CarouselElement({ element }) {
       />
       <div className="px-2 py-3 h-20">
         <h3 className="font-bold text-sm mb-2 break-all">{element.name}</h3>
-        <p className="text-gray-700 text-xs">
-          {element.character}
-        </p>
+        <p className="text-gray-700 text-xs">{element.character}</p>
       </div>
     </div>
   );

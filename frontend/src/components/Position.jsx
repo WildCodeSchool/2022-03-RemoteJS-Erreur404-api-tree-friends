@@ -2,7 +2,7 @@ import React from "react";
 
 function Position({ place }) {
   return (
-    <div className="w-auto rounded-lg overflow-hidden shadow-lg m-4">
+    <div className="w-auto rounded-lg overflow-hidden shadow-lg m-4 object-cover">
       <img
         className="max-h-32 h-full w-full object-cover object-center"
         src={`https://image.tmdb.org/t/p/w342/${place.poster_path}`}
