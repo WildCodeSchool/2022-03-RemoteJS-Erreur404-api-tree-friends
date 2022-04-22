@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
+// assets
 import logo from "../assets/alt-logo.png";
 import dice from "../assets/dice.png";
-
+// components
 import Movie from "../components/Movie";
 
 function Settings() {
