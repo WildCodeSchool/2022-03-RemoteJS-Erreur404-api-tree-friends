@@ -22,24 +22,23 @@ function Game() {
             maxHeight: 200,
             marginLeft: "auto",
             marginRight: "auto",
-         }}
+          }}
         >
           <Carousel>
             {fightClubCast.cast.map((e) => (
               <CarouselElement element={e} />
             ))}
           </Carousel>
-       </div>
+        </div>
         <div className="m-12 mt-0 mb-6 h-40">
           <Position place={harryPotter} />
-       </div>
+        </div>
       </div>
       <div className="flex justify-between">
-        <img className="m-2 w-14 aspect-square"src={logo} alt="logo" />
-        <img className="m-2 w-14 aspect-square"src={help} alt="help" />
+        <img className="m-2 w-14 aspect-square" src={logo} alt="logo" />
+        <img className="m-2 w-14 aspect-square" src={help} alt="help" />
       </div>
     </div>
-
   );
 }
 
