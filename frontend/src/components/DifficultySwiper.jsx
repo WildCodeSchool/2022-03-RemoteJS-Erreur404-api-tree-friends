@@ -1,20 +1,15 @@
 import React from "react";
-import Dropdown from "react-dropdown";
-import { useState } from "react/cjs/react.production.min";
 
 function DifficultySwiper() {
-  const options = ["Facile", "Moyen", "Difficile"];
-
-  const [difficulty, SetDifficulty] = useState("test");
-
-  const handleChange = (event) => {
-    event.preventDefault();
-    SetDifficulty(event.target.value);
-  };
-
   return (
-    <div>
-      <Dropdown options={options} onChange={handleChange} value={difficulty} />;
+    <div className="flex flex-col text-cyan-700">
+      <div className="self-center">
+        <select>
+          <option value="Facile">Facile</option>
+          <option value="Moyen">Moyen</option>
+          <option value="Difficile">Difficile</option>
+        </select>
+      </div>
     </div>
   );
 }
