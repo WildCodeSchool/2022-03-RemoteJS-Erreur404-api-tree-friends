@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import Position from "../components/Position";
 import Carousel from "../components/Carousel";
@@ -11,10 +11,24 @@ import logo from "../assets/alt-logo.png";
 import help from "../assets/help-button.png";
 
 function Game() {
+  const [time, setTime] = useState(0);
+  const [minutes, setMinutes] = useState(0);
+  useEffect(() => {
+    setTimeout(() => {
+      if (time < 59) {
+        setTime(time + 1);
+      } else {
+        setTime(0);
+        setMinutes(minutes + 1);
+      }
+    }, 1000);
+  }, [time]);
   return (
     <div>
       <div className="flex flex-col">
-        <h1 className="self-center mt-4 font-bold text-xl">0m 12s</h1>
+        <h1 className="self-center mt-4 font-bold text-xl">
+          {minutes}m {time}s
+        </h1>
         <Position place={fightClub} />
         <div
           style={{
@@ -41,5 +55,4 @@ function Game() {
     </div>
   );
 }
-
 export default Game;
