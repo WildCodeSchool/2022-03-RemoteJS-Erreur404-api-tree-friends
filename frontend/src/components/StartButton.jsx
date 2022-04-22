@@ -1,19 +1,14 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function StartButton() {
-  const history = useNavigate();
-
-  function handleClick() {
-    history.push("/settings");
-  }
   return (
-    <div>
-      <button type="button" className="start-button" onClick={handleClick}>
-        <div className="button-arrow" />
-        Start
+    <Link className="button-link" to="/settings">
+      <button className="start-button" type="button">
+        <i className="button-arrow" />
+        <h2 className="start">Start</h2>
       </button>
-    </div>
+    </Link>
   );
 }
 
