@@ -9,7 +9,7 @@ function Home() {
       <h1 className="text-2xl leading-normal font-bold mb-12 m-14 ">
         <p className="text-orange-400 flex left">
           BIENVENUE SUR MOVIE WARS, UN JEU QUI VOUS INVITE A
-        </p>{" "}
+        </p>
         <p className="text-cyan-700 flex left">
           CONNECTER DEUX FILMS ENTRE EUX.
         </p>
