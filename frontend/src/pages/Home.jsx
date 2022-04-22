@@ -1,6 +1,8 @@
 import React from "react";
 
 import Input from "../components/input";
+import StartButton from "../components/StartButton";
+
 import logo from "../assets/alt-logo.png";
 
 function Home() {
@@ -16,6 +18,7 @@ function Home() {
         </p>
       </h1>
       <Input />
+      <StartButton content="Start" link="/settings" />
     </div>
   );
 }

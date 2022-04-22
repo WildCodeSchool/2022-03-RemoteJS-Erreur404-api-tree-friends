@@ -5,6 +5,8 @@ import logo from "../assets/alt-logo.png";
 import dice from "../assets/dice.png";
 // components
 import Movie from "../components/Movie";
+import StartButton from "../components/StartButton";
+import DifficultySwiper from "../components/DifficultySwiper";
 
 function Settings() {
   const [movieStart, setMovieStart] = useState();
@@ -60,6 +62,8 @@ function Settings() {
       >
         <img className="h-12" src={dice} alt="dice" />
       </button>
+      <DifficultySwiper />
+      <StartButton content="Play" link="/game" />
     </div>
   );
 }
