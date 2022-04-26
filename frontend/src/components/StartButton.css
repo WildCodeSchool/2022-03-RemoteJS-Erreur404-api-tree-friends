@@ -5,6 +5,10 @@
   text-decoration: none;
 }
 
+button {
+  background: #eb910a;
+}
+
 .start-button {
   display: flex;
   justify-content: center;
