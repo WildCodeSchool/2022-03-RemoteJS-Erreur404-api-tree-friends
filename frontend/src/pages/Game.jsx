@@ -40,7 +40,7 @@ function Game() {
         >
           <Carousel>
             {fightClubCast.cast.map((e) => (
-              <CarouselElement element={e} />
+              <CarouselElement element={e} key={e.id} />
             ))}
           </Carousel>
         </div>
