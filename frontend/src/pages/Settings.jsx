@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 // assets
 import logo from "../assets/alt-logo.png";
@@ -8,12 +8,13 @@ import topMovies from "../data/topMovies";
 import Movie from "../components/Movie";
 import StartButton from "../components/StartButton";
 import DifficultySwiper from "../components/DifficultySwiper";
+import MovieContext from "../contexts/MovieContext";
 
 function Settings() {
   const [movieStart, setMovieStart] = useState();
   const [movieEnd, setMovieEnd] = useState();
   const [difficulty, setDifficulty] = useState("facile");
-
+  const { setMoviesId } = useContext(MovieContext);
   const randomMovieId = [];
 
   const random = (index) => {
@@ -25,6 +26,7 @@ function Settings() {
     } else {
       randomMovieId[index] = Math.floor(Math.random() * (400 - 100) + 100);
     }
+    setMoviesId(randomMovieId);
     return randomMovieId[index];
   };
 
