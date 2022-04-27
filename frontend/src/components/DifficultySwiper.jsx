@@ -2,7 +2,7 @@ import React from "react";
 
 function DifficultySwiper() {
   return (
-    <div className="flex flex-col text-cyan-700">
+    <div className="flex flex-col text-cyan-700 m-6">
       <div className="self-center">
         <select>
           <option value="Facile">Facile</option>

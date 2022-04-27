@@ -3,17 +3,28 @@ import axios from "axios";
 // assets
 import logo from "../assets/alt-logo.png";
 import dice from "../assets/dice.png";
+import topMovies from "../data/topMovies";
 // components
 import Movie from "../components/Movie";
+import StartButton from "../components/StartButton";
+import DifficultySwiper from "../components/DifficultySwiper";
 
 function Settings() {
   const [movieStart, setMovieStart] = useState();
   const [movieEnd, setMovieEnd] = useState();
+  const [difficulty, setDifficulty] = useState("facile");
 
   const randomMovieId = [];
 
   const random = (index) => {
-    randomMovieId[index] = Math.floor(Math.random() * (400 - 100) + 100);
+    if (difficulty === "facile") {
+      randomMovieId[index] =
+        topMovies[Math.floor(Math.random() * topMovies.length)];
+    } else if (difficulty === "moyen") {
+      randomMovieId[index] = Math.floor(Math.random() * (400 - 100) + 100);
+    } else {
+      randomMovieId[index] = Math.floor(Math.random() * (400 - 100) + 100);
+    }
     return randomMovieId[index];
   };
 
@@ -60,6 +71,10 @@ function Settings() {
       >
         <img className="h-12" src={dice} alt="dice" />
       </button>
+      <DifficultySwiper
+        onChange={(event) => setDifficulty(event.target.value)}
+      />
+      <StartButton content="Play" link="/game" />
     </div>
   );
 }

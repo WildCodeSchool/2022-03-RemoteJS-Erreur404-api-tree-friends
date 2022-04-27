@@ -5,6 +5,10 @@
   text-decoration: none;
 }
 
+button {
+  background: #eb910a;
+}
+
 .start-button {
   display: flex;
   justify-content: center;
@@ -17,7 +21,7 @@
   box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.2);
   border-radius: 25px;
   font-weight: bold;
-  padding-top: 7px;
+  padding-top: 10px;
 }
 
 .button-arrow {
@@ -32,5 +36,6 @@
 
 .start {
   margin: 0;
-  padding-left: 7px;
+  padding-left: 20px;
+  font-size: 18px;
 }
