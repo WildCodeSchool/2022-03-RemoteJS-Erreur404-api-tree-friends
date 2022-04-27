@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./carousel.css";
 
-function Carousel(props) {
-  const { children } = props;
+function Carousel({ children }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [length, setLength] = useState(children.length);
 

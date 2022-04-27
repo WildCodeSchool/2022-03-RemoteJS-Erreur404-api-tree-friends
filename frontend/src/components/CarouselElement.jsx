@@ -8,7 +8,7 @@ function CarouselElement({ element }) {
         src={`https://image.tmdb.org/t/p/w342/${
           element.profile_path ? element.profile_path : element.poster_path
         }`}
-        alt="movie"
+        alt={element.name ? element.name : element.title}
       />
       <div className="px-2 py-3 h-20">
         <h3 className="font-bold text-sm mb-2 break-all">
