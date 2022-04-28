@@ -4,18 +4,17 @@ import axios from "axios";
 import Position from "../components/Position";
 import Carousel from "../components/Carousel";
 import CarouselElement from "../components/CarouselElement";
-import MovieContext from "../contexts/MovieContext";
+import ExportContext from "../contexts/MovieContext";
 
 import fightClub from "../data/fightClub";
-import fightClubCast from "../data/fightClubCast";
 import logo from "../assets/alt-logo.png";
 import help from "../assets/help-button.png";
 
 function Game() {
-  const { moviesId } = useContext(MovieContext);
+  const { moviesId } = useContext(ExportContext.MovieContext);
   const [position, setPosition] = useState(fightClub);
   const [destination, setDestination] = useState(fightClub);
-  const [carousel, setCarousel] = useState(fightClubCast);
+  const [carousel, setCarousel] = useState(false);
 
   const switchCarousel = (id) => {
     if (position.title) {
@@ -111,11 +110,15 @@ function Game() {
             marginRight: "auto",
           }}
         >
-          <Carousel>
-            {carousel.cast.slice(0, 10).map((e) => (
-              <CarouselElement element={e} key={e.id} />
-            ))}
-          </Carousel>
+          {carousel ? (
+            <Carousel>
+              {carousel.cast.slice(0, 10).map((e) => (
+                <CarouselElement element={e} key={e.id} />
+              ))}
+            </Carousel>
+          ) : (
+            <div />
+          )}
         </div>
         <div className="m-12 mt-0 mb-6 h-40">
           <Position place={destination} />
