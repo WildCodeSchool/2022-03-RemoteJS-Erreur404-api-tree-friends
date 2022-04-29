@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
+import Modal from "react-modal";
 
 import Position from "../components/Position";
 import Carousel from "../components/Carousel";
@@ -10,6 +11,8 @@ import ExportContext from "../contexts/MovieContext";
 import fightClub from "../data/fightClub";
 import logo from "../assets/alt-logo.png";
 import help from "../assets/help-button.png";
+
+Modal.setAppElement("#root");
 
 function Game() {
   const { moviesId } = useContext(ExportContext.MovieContext);
