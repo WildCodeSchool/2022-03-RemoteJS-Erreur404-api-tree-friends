@@ -17,7 +17,7 @@ function App() {
         <Route path="/settings/" element={<Settings />} />
         <Route path="/game/" element={<Game />} />
         <Route path="/results/" element={<Results />} />
-        <Route path="*" element={<Error />} />
+        <Route path="/error/" element={<Error />} />
       </Routes>
     </Router>
   );

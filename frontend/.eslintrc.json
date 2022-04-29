@@ -27,7 +27,8 @@
       }
     ],
     "react/react-in-jsx-scope": "off",
-    "react/jsx-one-expression-per-line": "off"
+    "react/jsx-one-expression-per-line": "off",
+    "react/jsx-no-constructed-context-values": "off"
   },
   "settings": {
     "import/resolver": {

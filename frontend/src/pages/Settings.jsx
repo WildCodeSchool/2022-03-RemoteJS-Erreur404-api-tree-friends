@@ -1,37 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 // assets
 import logo from "../assets/alt-logo.png";
 import dice from "../assets/dice.png";
-import topMovies from "../data/topMovies";
+
 // components
 import Movie from "../components/Movie";
 import StartButton from "../components/StartButton";
 import DifficultySwiper from "../components/DifficultySwiper";
+import ExportContext from "../contexts/MovieContext";
+
+// Data
+import topMovies from "../data/topMovies";
 
 function Settings() {
   const [movieStart, setMovieStart] = useState();
   const [movieEnd, setMovieEnd] = useState();
   const [difficulty, setDifficulty] = useState("facile");
+  const { handleMoviesIdChange } = useContext(ExportContext.MovieContext);
 
-  const randomMovieId = [];
-
-  const random = (index) => {
-    if (difficulty === "facile") {
-      randomMovieId[index] =
-        topMovies[Math.floor(Math.random() * topMovies.length)];
-    } else if (difficulty === "moyen") {
-      randomMovieId[index] = Math.floor(Math.random() * (400 - 100) + 100);
-    } else {
-      randomMovieId[index] = Math.floor(Math.random() * (400 - 100) + 100);
-    }
-    return randomMovieId[index];
-  };
-
-  const generateMovies = (callback, index) => {
+  const generateMovies = (callback, id) => {
     axios
       .get(
-        `https://api.themoviedb.org/3/movie/${random(index)}?api_key=${
+        `https://api.themoviedb.org/3/movie/${id}?api_key=${
           import.meta.env.VITE_API_KEY
         }&language=fr`
       )
@@ -40,12 +31,25 @@ function Settings() {
       });
   };
 
-  useEffect(() => {
-    generateMovies(setMovieStart, 0);
-    generateMovies(setMovieEnd, 1);
-    if (movieStart === movieEnd) {
-      generateMovies(setMovieEnd, 1);
+  const getRandomId = () => {
+    if (difficulty === "facile") {
+      return topMovies[Math.floor(Math.random() * topMovies.length)];
     }
+    if (difficulty === "moyen") {
+      return Math.floor(Math.random() * (400 - 100) + 100);
+    }
+    return Math.floor(Math.random() * (400 - 100) + 100);
+  };
+
+  const prepareData = () => {
+    const temporaireIds = [getRandomId(), getRandomId()];
+    generateMovies(setMovieStart, temporaireIds[0]);
+    generateMovies(setMovieEnd, temporaireIds[1]);
+    handleMoviesIdChange(temporaireIds);
+  };
+
+  useEffect(() => {
+    prepareData();
   }, []);
 
   return (
@@ -64,10 +68,7 @@ function Settings() {
       <button
         className="self-center m-2"
         type="submit"
-        onClick={() => {
-          generateMovies(setMovieStart, 0);
-          generateMovies(setMovieEnd, 1);
-        }}
+        onClick={() => prepareData()}
       >
         <img className="h-12" src={dice} alt="dice" />
       </button>
