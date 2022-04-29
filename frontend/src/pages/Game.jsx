@@ -4,6 +4,7 @@ import axios from "axios";
 import Position from "../components/Position";
 import Carousel from "../components/Carousel";
 import CarouselElement from "../components/CarouselElement";
+import Rules from "../components/Rules";
 import ExportContext from "../contexts/MovieContext";
 
 import fightClub from "../data/fightClub";
@@ -95,6 +96,8 @@ function Game() {
     }, 1000);
   }, [time]);
 
+  const [openRules, setOpenRules] = useState(false);
+
   return (
     <div>
       <div className="flex flex-col">
@@ -127,6 +130,16 @@ function Game() {
       <div className="flex justify-between">
         <img className="m-2 w-14 aspect-square" src={logo} alt="logo" />
         <img className="m-2 w-14 aspect-square" src={help} alt="help" />
+      </div>
+      <div className="flex flex-col items-end">
+        <button
+          type="button"
+          onClick={() => setOpenRules(true)}
+          className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-full"
+        >
+          Rules
+        </button>
+        {openRules && <Rules closeRules={setOpenRules} />}
       </div>
     </div>
   );
