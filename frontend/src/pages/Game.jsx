@@ -5,6 +5,7 @@ import Position from "../components/Position";
 import Carousel from "../components/Carousel";
 import CarouselElement from "../components/CarouselElement";
 import ExportContext from "../contexts/MovieContext";
+import Chrono from "../components/Chrono";
 
 import fightClub from "../data/fightClub";
 import logo from "../assets/alt-logo.png";
@@ -82,25 +83,11 @@ function Game() {
     createDestination(moviesId[1]);
   }, []);
 
-  const [time, setTime] = useState(0);
-  const [minutes, setMinutes] = useState(0);
-  useEffect(() => {
-    setTimeout(() => {
-      if (time < 59) {
-        setTime(time + 1);
-      } else {
-        setTime(0);
-        setMinutes(minutes + 1);
-      }
-    }, 1000);
-  }, [time]);
-
   return (
     <div>
       <div className="flex flex-col">
-        <h1 className="self-center mt-4 font-bold text-xl">
-          {minutes}m {time}s
-        </h1>
+        <Chrono />
+
         <Position place={position} />
         <div
           style={{
