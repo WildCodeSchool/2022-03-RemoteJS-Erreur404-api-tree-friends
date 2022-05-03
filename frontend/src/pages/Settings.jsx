@@ -72,9 +72,7 @@ function Settings() {
       >
         <img className="h-12" src={dice} alt="dice" />
       </button>
-      <DifficultySwiper
-        onChange={(event) => setDifficulty(event.target.value)}
-      />
+      <DifficultySwiper difficulty={difficulty} setDifficulty={setDifficulty} />
       <StartButton content="Play" link="/game" />
     </div>
   );
