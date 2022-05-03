@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import Modal from "react-modal";
+// import { FaQuestionCircle } from "react-icons/fa";
 
 import Position from "../components/Position";
 import Carousel from "../components/Carousel";
