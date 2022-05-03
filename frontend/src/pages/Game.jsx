@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import Modal from "react-modal";
-// import { FaQuestionCircle } from "react-icons/fa";
+import { FaQuestionCircle, FaQuestion } from "react-icons/fa";
 
 import Position from "../components/Position";
 import Carousel from "../components/Carousel";
@@ -139,9 +139,9 @@ function Game() {
         <button
           type="button"
           onClick={() => setOpenRules(true)}
-          className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-full"
+          className="bg-white hover:bg-grey-700 text-orange-500 font-bold py-8 px-4 rounded-full"
         >
-          Rules
+          <FaQuestion />
         </button>
         {openRules && <Rules closeRules={setOpenRules} />}
       </div>
