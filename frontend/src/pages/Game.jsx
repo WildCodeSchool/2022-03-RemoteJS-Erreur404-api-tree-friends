@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
-import Modal from "react-modal";
 import { FaQuestion } from "react-icons/fa";
 
 import Position from "../components/Position";
@@ -12,8 +11,6 @@ import ExportContext from "../contexts/MovieContext";
 import fightClub from "../data/fightClub";
 import logo from "../assets/alt-logo.png";
 import help from "../assets/help-button.png";
-
-Modal.setAppElement("#root");
 
 function Game() {
   const { moviesId } = useContext(ExportContext.MovieContext);
@@ -133,15 +130,12 @@ function Game() {
       </div>
       <div className="flex justify-between">
         <img className="m-2 w-14 aspect-square" src={logo} alt="logo" />
-        <img className="m-2 w-14 aspect-square" src={help} alt="help" />
-      </div>
-      <div className="flex flex-col items-end">
         <button
           type="button"
           onClick={() => setOpenRules(true)}
-          className="w-12 h-12 bg-gray-50 text-orange-400 font-bold py-2 px-4 rounded-full shadow-inner"
+          className="w-12 h-12 bg-gray-50 text-orange-400 font-bold py-2 px-3.5 mx-2 mt-3 rounded-full shadow-inner"
         >
-          <FaQuestion />
+          <FaQuestion className="w-5 h-5 shadow-black" />
         </button>
         {openRules && <Rules closeRules={setOpenRules} />}
       </div>

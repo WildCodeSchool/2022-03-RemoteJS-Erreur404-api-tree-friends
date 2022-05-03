@@ -3,7 +3,7 @@ import React from "react";
 function Rules({ closeRules }) {
   return (
     // rulesBackground
-    <div className="w-screen h-screen bg-gray-200 flex justify-center items-center fixed">
+    <div className="absolute inset-0 z-20 w-screen h-screen bg-gray-200 flex justify-center items-center fixed">
       {/* rulesContainer */}
       <div className="w-96 h-96 flex flex-col bg-white shadow-md rounded-lg p-12">
         <div className=" flex justify-end">
