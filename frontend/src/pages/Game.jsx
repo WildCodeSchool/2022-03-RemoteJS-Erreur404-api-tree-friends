@@ -6,17 +6,19 @@ import Position from "../components/Position";
 import Carousel from "../components/Carousel";
 import CarouselElement from "../components/CarouselElement";
 import Rules from "../components/Rules";
+import LogoLink from "../components/LogoLink";
 import ExportContext from "../contexts/MovieContext";
 
 import fightClub from "../data/fightClub";
 import logo from "../assets/alt-logo.png";
-import help from "../assets/help-button.png";
 
 function Game() {
   const { moviesId } = useContext(ExportContext.MovieContext);
   const [position, setPosition] = useState(fightClub);
   const [destination, setDestination] = useState(fightClub);
   const [carousel, setCarousel] = useState(false);
+  const [openRules, setOpenRules] = useState(false);
+  const [homeLink, setHomeLink] = useState(false);
 
   const switchCarousel = (id) => {
     if (position.title) {
@@ -97,8 +99,6 @@ function Game() {
     }, 1000);
   }, [time]);
 
-  const [openRules, setOpenRules] = useState(false);
-
   return (
     <div>
       <div className="flex flex-col">
@@ -129,7 +129,15 @@ function Game() {
         </div>
       </div>
       <div className="flex justify-between">
-        <img className="m-2 w-14 aspect-square" src={logo} alt="logo" />
+        <button
+          type="button"
+          onClick={() => setHomeLink(true)}
+          className="m-2 w-14 aspect-square"
+        >
+          <img src={logo} alt="logo" />
+        </button>
+        {homeLink && <LogoLink closeLink={setHomeLink} />}
+
         <button
           type="button"
           onClick={() => setOpenRules(true)}
