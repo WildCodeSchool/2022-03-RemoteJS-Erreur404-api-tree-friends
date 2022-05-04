@@ -9,6 +9,7 @@ import Rules from "../components/Rules";
 import LogoLink from "../components/LogoLink";
 import ExportContext from "../contexts/MovieContext";
 import Chrono from "../components/Chrono";
+import StartButton from "../components/StartButton";
 
 import logo from "../assets/alt-logo.png";
 
@@ -84,6 +85,8 @@ function Game() {
     }, 200);
   }, [position.id]);
 
+  useEffect(() => {}, [carousel]);
+
   return (
     <div>
       <div className="flex flex-col">
@@ -100,14 +103,20 @@ function Game() {
         >
           {carousel !== "" && (
             <Carousel>
-              {carousel.cast.slice(0, 10).map((e) => (
-                <CarouselElement
-                  element={e}
-                  key={e.id}
-                  changeData={changeData}
-                />
-              ))}
+              {carousel.cast
+                .sort((a, b) => b.popularity - a.popularity)
+                .slice(0, 30)
+                .map((e) => (
+                  <CarouselElement
+                    element={e}
+                    key={e.id}
+                    changeData={changeData}
+                  />
+                ))}
             </Carousel>
+          )}
+          {position.id === destination.id && (
+            <StartButton content="Results" link="/results" />
           )}
         </div>
         <div className="m-12 mt-0 mb-6 h-40">
@@ -123,7 +132,6 @@ function Game() {
           <img src={logo} alt="logo" />
         </button>
         {homeLink && <LogoLink closeLink={setHomeLink} />}
-
         <button
           type="button"
           onClick={() => setOpenRules(true)}
