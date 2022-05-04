@@ -1,4 +1,5 @@
 import React from "react";
+import RulesPages from "./RulesPages";
 
 function Rules({ closeRules }) {
   return (
@@ -19,12 +20,10 @@ function Rules({ closeRules }) {
         <div className="text-cyan-700 text-center text-2xl font-bold drop-shadow-md">
           <h3>COMMENT JOUER</h3>
         </div>
+
         {/* rulesBody */}
         <div className="text-center">
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione
-            laudantium recusa lor
-          </p>
+          <RulesPages />
         </div>
         {/* rulesFooter */}
         <div className="flex justify-center">

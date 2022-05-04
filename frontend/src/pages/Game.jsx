@@ -24,7 +24,7 @@ function Game() {
     if (position.title) {
       axios
         .get(
-          `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${
+          `https://api.themoviedb.org/3/movied}/credits?api_key=${
             import.meta.env.VITE_API_KEY
           }&language=fr`
         )
