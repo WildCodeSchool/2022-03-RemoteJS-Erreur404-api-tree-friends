@@ -1,21 +1,25 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
+import { FaQuestion } from "react-icons/fa";
 
 import Position from "../components/Position";
 import Carousel from "../components/Carousel";
 import CarouselElement from "../components/CarouselElement";
+import Rules from "../components/Rules";
+import LogoLink from "../components/LogoLink";
 import ExportContext from "../contexts/MovieContext";
 import Chrono from "../components/Chrono";
 
 import fightClub from "../data/fightClub";
 import logo from "../assets/alt-logo.png";
-import help from "../assets/help-button.png";
 
 function Game() {
   const { moviesId } = useContext(ExportContext.MovieContext);
   const [position, setPosition] = useState(fightClub);
   const [destination, setDestination] = useState(fightClub);
   const [carousel, setCarousel] = useState(false);
+  const [openRules, setOpenRules] = useState(false);
+  const [homeLink, setHomeLink] = useState(false);
 
   const switchCarousel = (id) => {
     if (position.title) {
@@ -112,8 +116,23 @@ function Game() {
         </div>
       </div>
       <div className="flex justify-between">
-        <img className="m-2 w-14 aspect-square" src={logo} alt="logo" />
-        <img className="m-2 w-14 aspect-square" src={help} alt="help" />
+        <button
+          type="button"
+          onClick={() => setHomeLink(true)}
+          className="m-2 w-14 aspect-square"
+        >
+          <img src={logo} alt="logo" />
+        </button>
+        {homeLink && <LogoLink closeLink={setHomeLink} />}
+
+        <button
+          type="button"
+          onClick={() => setOpenRules(true)}
+          className="w-12 h-12 bg-gray-50 text-orange-400 font-bold py-2 px-3.5 mx-2 mt-3 rounded-full shadow-inner"
+        >
+          <FaQuestion className="w-5 h-5 shadow-black" />
+        </button>
+        {openRules && <Rules closeRules={setOpenRules} />}
       </div>
     </div>
   );
