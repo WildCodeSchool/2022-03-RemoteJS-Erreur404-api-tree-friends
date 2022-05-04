@@ -3,16 +3,16 @@ import { Link } from "react-router-dom";
 
 function LogoLink({ closeLink }) {
   return (
-    // rulesBackground
+    // logoLinkBackground
     <div className="absolute inset-0 z-20 w-screen h-screen bg-gray-500/75 flex justify-center items-center fixed">
-      {/* rulesContainer */}
+      {/* logoLinkContainer */}
       <div className="w-96 h-96 flex flex-col bg-white shadow-md rounded-lg p-12">
         <div className=" flex justify-end" />
-        {/* rulesHeader */}
+        {/* logoLinkHeader */}
         <div className="text-center">
           <h3>Are you sure you want to go back to menu ?</h3>
         </div>
-        {/* rulesFooter */}
+        {/* logoLinkFooter */}
         <div className="flex justify-around mt-4">
           <Link to="/">
             <button
