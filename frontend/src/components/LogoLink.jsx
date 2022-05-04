@@ -10,7 +10,7 @@ function LogoLink({ closeLink }) {
         <div className=" flex justify-center" />
         {/* logoLinkHeader */}
         <div className="text-cyan-700 text-center text-2xl font-bold drop-shadow-md">
-          <h3>Voulez-vous vraiment retourner à l'accueil ?</h3>
+          <h3>Voulez-vous vraiment retourner à l&apos;accueil ?</h3>
         </div>
         {/* logoLinkFooter */}
         <div className="flex justify-around mb-20">

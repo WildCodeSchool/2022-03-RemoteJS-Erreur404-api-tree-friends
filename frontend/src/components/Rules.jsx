@@ -31,7 +31,7 @@ function Rules({ closeRules }) {
           <button
             onClick={() => closeRules(false)}
             type="button"
-            className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-full"
+            className="bg-orange-400 shadow-lg text-white font-bold py-2 px-4 rounded-full hover:bg-orange-700"
           >
             Compris !
           </button>
