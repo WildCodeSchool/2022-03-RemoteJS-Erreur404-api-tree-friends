@@ -19,7 +19,7 @@ function App() {
         <Route path="/game/" element={<Game />} />
         <Route path="/results/" element={<Results />} />
         <Route
-          path="/replay/:start/:end/:username/:timer"
+          path="/replay/:start/:end/:username/:timer/:clic"
           element={<Replay />}
         />
         <Route path="*" element={<Error />} />

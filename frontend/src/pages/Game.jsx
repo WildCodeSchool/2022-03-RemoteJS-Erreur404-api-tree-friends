@@ -7,14 +7,16 @@ import Carousel from "../components/Carousel";
 import CarouselElement from "../components/CarouselElement";
 import Rules from "../components/Rules";
 import LogoLink from "../components/LogoLink";
-import ExportContext from "../contexts/MovieContext";
 import Chrono from "../components/Chrono";
 import StartButton from "../components/StartButton";
+
+import ExportContext from "../contexts/MovieContext";
 
 import logo from "../assets/alt-logo.png";
 
 function Game() {
   const { moviesId } = useContext(ExportContext.MovieContext);
+  const { handleClicChange } = useContext(ExportContext.MovieContext);
   const [position, setPosition] = useState("");
   const [destination, setDestination] = useState("");
   const [carousel, setCarousel] = useState("");
@@ -82,6 +84,7 @@ function Game() {
         setType("movie");
         setCarouselType("credits");
       }
+      handleClicChange();
     }, 200);
   }, [position.id]);
 

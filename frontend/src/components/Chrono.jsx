@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+
+import ExportContext from "../contexts/MovieContext";
 
 function Chrono() {
-  const [timeScore, setTimeScore] = useState(0);
+  const { handleChronoChange } = useContext(ExportContext.MovieContext);
   const [seconds, setSeconds] = useState(0);
   const [minutes, setMinutes] = useState(0);
   useEffect(() => {
@@ -12,7 +14,7 @@ function Chrono() {
         setSeconds(0);
         setMinutes(minutes + 1);
       }
-      setTimeScore(timeScore + 1);
+      handleChronoChange(`${minutes}m${seconds}s`);
     }, 1000);
   }, [seconds]);
 

@@ -48,9 +48,9 @@ function Replay() {
           {movieEnd ? <Movie movie={movieEnd} /> : ""}
         </div>
       </div>
-      <h1 className="text-2xl leading-normal font-bold mx-10 text-orange-400 mb-8">
+      <h1 className="text-1xl leading-normal font-bold mx-10 text-orange-400 mb-8">
         {moviesParams.username} vous invite à battre son score de{" "}
-        {moviesParams.timer} !
+        {moviesParams.timer} en {moviesParams.clic} coups!
       </h1>
       <Input />
       <StartButton content="Start" link="/game" />
