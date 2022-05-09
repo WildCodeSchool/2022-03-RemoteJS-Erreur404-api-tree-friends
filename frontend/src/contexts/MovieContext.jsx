@@ -4,9 +4,9 @@ const MovieContext = createContext();
 
 function MovieProvider({ children }) {
   const [moviesId, setMoviesId] = useState([]);
-  const [Username, setUsername] = useState("");
-  const [Chrono, setChrono] = useState("");
-  const [Clic, setClic] = useState(-1);
+  const [username, setUsername] = useState("");
+  const [chrono, setChrono] = useState("");
+  const [clic, setClic] = useState(-1);
   const handleMoviesIdChange = (temporaireIds) => {
     setMoviesId(temporaireIds);
   };
@@ -17,7 +17,7 @@ function MovieProvider({ children }) {
     setChrono(time);
   };
   const handleClicChange = () => {
-    setClic(Clic + 1);
+    setClic(clic + 1);
   };
 
   return (
@@ -25,11 +25,11 @@ function MovieProvider({ children }) {
       value={{
         moviesId,
         handleMoviesIdChange,
-        Username,
+        username,
         handleUserChange,
-        Chrono,
+        chrono,
         handleChronoChange,
-        Clic,
+        clic,
         handleClicChange,
       }}
     >

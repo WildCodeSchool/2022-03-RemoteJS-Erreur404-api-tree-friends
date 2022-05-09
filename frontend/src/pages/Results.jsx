@@ -7,10 +7,10 @@ import StartButton from "../components/StartButton";
 import ExportContext from "../contexts/MovieContext";
 
 function Results() {
-  const { Clic } = useContext(ExportContext.MovieContext);
-  const { Chrono } = useContext(ExportContext.MovieContext);
+  const { clic } = useContext(ExportContext.MovieContext);
+  const { chrono } = useContext(ExportContext.MovieContext);
   const { moviesId } = useContext(ExportContext.MovieContext);
-  const { Username } = useContext(ExportContext.MovieContext);
+  const { username } = useContext(ExportContext.MovieContext);
 
   return (
     <div className="flex flex-col">
@@ -21,13 +21,13 @@ function Results() {
         </h1>
 
         <h1 className="text-cyan-700 text-4xl leading-normal font-bold text-center mb-4">
-          {Username}
+          {username}
         </h1>
         <p className="text-orange-400 text-2xl leading-normal font-bold text-center">
-          Temps: {Chrono}
+          Temps: {chrono}
         </p>
         <p className="text-orange-400 text-2xl leading-normal font-bold text-center">
-          Nombre de coups: {Clic}
+          Nombre de coups: {clic}
         </p>
         <p className="text-cyan-700 text-2xl leading-normal font-bold text-center mb-8">
           Partage ton score avec tes amis
@@ -37,7 +37,7 @@ function Results() {
           type="button"
           onClick={() => {
             navigator.clipboard.writeText(
-              `http://localhost:3000/replay/${moviesId[0]}/${moviesId[1]}/${Username}/${Chrono}/${Clic}`
+              `http://localhost:3000/replay/${moviesId[0]}/${moviesId[1]}/${username}/${chrono}/${clic}`
             );
           }}
         >
