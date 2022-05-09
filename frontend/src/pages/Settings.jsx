@@ -12,6 +12,7 @@ import ExportContext from "../contexts/MovieContext";
 
 // Data
 import topMovies from "../data/topMovies";
+import easyMovies from "../data/easyMovies";
 
 function Settings() {
   const [movieStart, setMovieStart] = useState();
@@ -33,10 +34,10 @@ function Settings() {
 
   const getRandomId = () => {
     if (difficulty === "facile") {
-      return topMovies[Math.floor(Math.random() * topMovies.length)];
+      return easyMovies[Math.floor(Math.random() * easyMovies.length)];
     }
     if (difficulty === "moyen") {
-      return Math.floor(Math.random() * (400 - 100) + 100);
+      return topMovies[Math.floor(Math.random() * topMovies.length)];
     }
     return Math.floor(Math.random() * (400 - 100) + 100);
   };
