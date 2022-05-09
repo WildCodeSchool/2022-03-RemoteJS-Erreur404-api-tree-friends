@@ -4,7 +4,7 @@ const MovieContext = createContext();
 
 function MovieProvider({ children }) {
   const [moviesId, setMoviesId] = useState([]);
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState("JeanJean");
   const [chrono, setChrono] = useState("");
   const [clic, setClic] = useState(-1);
   const handleMoviesIdChange = (temporaireIds) => {

@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { FaQuestion } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 import Position from "../components/Position";
 import Carousel from "../components/Carousel";
@@ -91,7 +92,12 @@ function Game() {
   useEffect(() => {}, [carousel]);
 
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.6 }}
+    >
       <div className="flex flex-col">
         <Chrono />
 
@@ -144,7 +150,7 @@ function Game() {
         </button>
         {openRules && <Rules closeRules={setOpenRules} />}
       </div>
-    </div>
+    </motion.div>
   );
 }
 

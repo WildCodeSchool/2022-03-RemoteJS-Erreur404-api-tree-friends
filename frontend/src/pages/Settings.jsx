@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { motion } from "framer-motion";
 import axios from "axios";
 // assets
 import logo from "../assets/alt-logo.png";
@@ -54,28 +55,47 @@ function Settings() {
   }, []);
 
   return (
-    <div className="flex flex-col">
-      <img
-        className="w-6/12 aspect-square self-center"
-        src={logo}
-        alt="alt-logo"
-      />
+    <motion.div
+      className="flex flex-col"
+      initial={{ opacity: 1 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <div className="flex flex-col">
-        <div className="flex flex-row">
-          {movieStart ? <Movie movie={movieStart} /> : ""}
-          {movieEnd ? <Movie movie={movieEnd} /> : ""}
-        </div>
+        <img
+          className="w-auto max-h-48 aspect-square self-center"
+          src={logo}
+          alt="alt-logo"
+        />
+        <motion.div
+          className="flex flex-col"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <div className="flex flex-row">
+            {movieStart ? <Movie movie={movieStart} type="Start" /> : ""}
+            {movieEnd ? <Movie movie={movieEnd} type="End" /> : ""}
+          </div>
+          <button
+            className="self-center mt-4 transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 duration-200"
+            type="submit"
+            onClick={() => prepareData()}
+          >
+            <img className="h-12" src={dice} alt="dice" />
+          </button>
+          <div className="flex justify-center">
+            <DifficultySwiper
+              difficulty={difficulty}
+              setDifficulty={setDifficulty}
+            />
+          </div>
+        </motion.div>
+        <StartButton content="Play" link="/gametransition" />
       </div>
-      <button
-        className="self-center m-2"
-        type="submit"
-        onClick={() => prepareData()}
-      >
-        <img className="h-12" src={dice} alt="dice" />
-      </button>
-      <DifficultySwiper difficulty={difficulty} setDifficulty={setDifficulty} />
-      <StartButton content="Play" link="/game" />
-    </div>
+    </motion.div>
   );
 }
 
