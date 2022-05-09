@@ -99,8 +99,6 @@ function Game() {
       transition={{ duration: 0.6 }}
     >
       <div className="flex flex-col">
-        <Chrono />
-
         {position !== "" && <Position items={position} />}
         <div
           style={{
@@ -132,7 +130,7 @@ function Game() {
           <Position items={destination} />
         </div>
       </div>
-      <div className="flex justify-between">
+      <div className="flex justify-between mt-10">
         <button
           type="button"
           onClick={() => setHomeLink(true)}
@@ -141,6 +139,7 @@ function Game() {
           <img src={logo} alt="logo" />
         </button>
         {homeLink && <LogoLink closeLink={setHomeLink} />}
+        <Chrono />
         <button
           type="button"
           onClick={() => setOpenRules(true)}

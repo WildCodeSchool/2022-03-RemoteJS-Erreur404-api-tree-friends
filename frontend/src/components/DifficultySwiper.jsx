@@ -9,7 +9,7 @@ function DifficultySwiper({ difficulty, setDifficulty }) {
           defaultValue={difficulty}
           onChange={(event) => setDifficulty(event.target.value)}
         >
-          <option value="" disabled selected hidden>
+          <option value="" disabled hidden>
             Choisis ton niveau
           </option>
           <option value="facile">Facile</option>

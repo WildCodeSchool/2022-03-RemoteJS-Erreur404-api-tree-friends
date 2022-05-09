@@ -96,7 +96,12 @@ function Settings() {
             />
           </div>
         </motion.div>
-        <StartButton content="Play" link="/gametransition" />
+        {movieEnd && (
+          <StartButton
+            content="Play"
+            link={`/gametransition/${movieStart.title}/${movieEnd.title}`}
+          />
+        )}
         <button
           type="button"
           onClick={() => setOpenRules(true)}

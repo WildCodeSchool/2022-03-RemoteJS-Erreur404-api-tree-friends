@@ -19,7 +19,10 @@ function App() {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home />} />
         <Route path="/settings/" element={<Settings />} />
-        <Route path="/gametransition/" element={<GameTransition />} />
+        <Route
+          path="/gametransition/:start/:end"
+          element={<GameTransition />}
+        />
         <Route path="/game/" element={<Game />} />
         <Route path="/results/" element={<Results />} />
         <Route
