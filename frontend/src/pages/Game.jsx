@@ -101,7 +101,7 @@ function Game() {
       <div className="flex flex-col">
         <Chrono />
 
-        {position !== "" && <Position place={position} />}
+        {position !== "" && <Position items={position} />}
         <div
           style={{
             maxWidth: 350,
@@ -129,7 +129,7 @@ function Game() {
           )}
         </div>
         <div className="m-12 mt-0 mb-6 h-40">
-          <Position place={destination} />
+          <Position items={destination} />
         </div>
       </div>
       <div className="flex justify-between">

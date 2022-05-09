@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { motion } from "framer-motion";
+import { FaQuestion } from "react-icons/fa";
 import axios from "axios";
 // assets
 import logo from "../assets/alt-logo.png";
@@ -10,6 +11,7 @@ import Movie from "../components/Movie";
 import StartButton from "../components/StartButton";
 import DifficultySwiper from "../components/DifficultySwiper";
 import ExportContext from "../contexts/MovieContext";
+import Rules from "../components/Rules";
 
 // Data
 import topMovies from "../data/topMovies";
@@ -19,6 +21,7 @@ function Settings() {
   const [movieStart, setMovieStart] = useState();
   const [movieEnd, setMovieEnd] = useState();
   const [difficulty, setDifficulty] = useState("facile");
+  const [openRules, setOpenRules] = useState(false);
   const { handleMoviesIdChange } = useContext(ExportContext.MovieContext);
 
   const generateMovies = (callback, id) => {
@@ -94,6 +97,14 @@ function Settings() {
           </div>
         </motion.div>
         <StartButton content="Play" link="/gametransition" />
+        <button
+          type="button"
+          onClick={() => setOpenRules(true)}
+          className="absolute bottom-2 right-2 w-12 h-12 bg-gray-50 text-orange-400 font-bold py-2 px-3.5 mx-2 mt-3 rounded-full shadow-inner"
+        >
+          <FaQuestion className="w-5 h-5 shadow-black" />
+        </button>
+        {openRules && <Rules closeRules={setOpenRules} />}
       </div>
     </motion.div>
   );

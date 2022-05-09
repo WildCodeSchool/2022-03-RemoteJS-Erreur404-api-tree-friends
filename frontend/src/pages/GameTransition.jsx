@@ -8,7 +8,7 @@ function GameTransition() {
   useEffect(() => {
     setTimeout(() => {
       navigate("/game");
-    }, 2200);
+    }, 2300);
   }, []);
 
   return (
