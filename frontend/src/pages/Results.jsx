@@ -7,10 +7,9 @@ import StartButton from "../components/StartButton";
 import ExportContext from "../contexts/MovieContext";
 
 function Results() {
-  const { clic } = useContext(ExportContext.MovieContext);
-  const { chrono } = useContext(ExportContext.MovieContext);
-  const { moviesId } = useContext(ExportContext.MovieContext);
-  const { username } = useContext(ExportContext.MovieContext);
+  const { clic, chrono, moviesId, username } = useContext(
+    ExportContext.MovieContext
+  );
 
   return (
     <div className="flex flex-col">
@@ -19,10 +18,9 @@ function Results() {
         <h1 className="text-orange-400 text-5xl leading-normal font-bold text-center mt-4">
           BRAVO !
         </h1>
-
-        <h1 className="text-cyan-700 text-4xl leading-normal font-bold text-center mb-4">
+        <h2 className="text-cyan-700 text-4xl leading-normal font-bold text-center mb-4">
           {username}
-        </h1>
+        </h2>
         <p className="text-orange-400 text-2xl leading-normal font-bold text-center">
           Temps: {chrono}
         </p>
