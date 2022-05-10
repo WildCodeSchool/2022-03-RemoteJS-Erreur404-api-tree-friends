@@ -66,9 +66,9 @@ function Rules({ closeRules }) {
             <div>
               {" "}
               <h3 className="text-orange-400 text-center text-2xl font-bold mb-3">
-                Toujours rien compris?
+                Toujours rien compris ?
               </h3>
-              <p className="text-center">
+              <p className="text-center mt-3">
                 Il suffit de jouer, vous verrez, tout devient clair une fois que
                 vous cliquez sur un premier acteur.
               </p>
