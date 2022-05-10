@@ -64,7 +64,6 @@ function Rules({ closeRules }) {
               </p>
             </div>
             <div>
-              {" "}
               <h3 className="text-orange-400 text-center text-2xl font-bold mb-3">
                 Toujours rien compris ?
               </h3>
