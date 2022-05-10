@@ -115,7 +115,7 @@ function Game() {
             onClick={() => setOpenRules(true)}
             className="w-12 h-12 bg-gray-50 text-orange-400 font-bold py-2 px-3.5 mx-2 mt-3 rounded-full shadow-inner"
           >
-            <FaQuestion className="w-5 h-5 shadow-black" />
+            <FaQuestion className="w-5 h-5 drop-shadow-md" />
           </button>
           {openRules && <Rules closeRules={setOpenRules} />}
         </div>
