@@ -1,8 +1,9 @@
+/* eslint-disable import/no-unresolved */
+
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation, Pagination } from "swiper";
 import "swiper/css/bundle";
-// import "./Rules.css";
 
 SwiperCore.use([Navigation, Pagination]);
 
