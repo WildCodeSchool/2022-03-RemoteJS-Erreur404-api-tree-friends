@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { FaQuestion } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 import Position from "../components/Position";
 import Carousel from "../components/Carousel";
@@ -91,11 +92,14 @@ function Game() {
   useEffect(() => {}, [carousel]);
 
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.6 }}
+    >
       <div className="flex flex-col">
-        <Chrono />
-
-        {position !== "" && <Position place={position} />}
+        {position !== "" && <Position items={position} />}
         <div
           style={{
             maxWidth: 350,
@@ -123,10 +127,10 @@ function Game() {
           )}
         </div>
         <div className="m-12 mt-0 mb-6 h-40">
-          <Position place={destination} />
+          <Position items={destination} />
         </div>
       </div>
-      <div className="flex justify-between">
+      <div className="flex justify-between mt-10">
         <button
           type="button"
           onClick={() => setHomeLink(true)}
@@ -135,6 +139,7 @@ function Game() {
           <img src={logo} alt="logo" />
         </button>
         {homeLink && <LogoLink closeLink={setHomeLink} />}
+        <Chrono />
         <button
           type="button"
           onClick={() => setOpenRules(true)}
@@ -144,7 +149,7 @@ function Game() {
         </button>
         {openRules && <Rules closeRules={setOpenRules} />}
       </div>
-    </div>
+    </motion.div>
   );
 }
 
