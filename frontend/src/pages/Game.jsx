@@ -1,72 +1,57 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { FaQuestion } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 import Position from "../components/Position";
 import Carousel from "../components/Carousel";
 import CarouselElement from "../components/CarouselElement";
 import Rules from "../components/Rules";
 import LogoLink from "../components/LogoLink";
+import Chrono from "../components/Chrono";
+import StartButton from "../components/StartButton";
+
 import ExportContext from "../contexts/MovieContext";
 
-import fightClub from "../data/fightClub";
 import logo from "../assets/alt-logo.png";
 
 function Game() {
   const { moviesId } = useContext(ExportContext.MovieContext);
-  const [position, setPosition] = useState(fightClub);
-  const [destination, setDestination] = useState(fightClub);
-  const [carousel, setCarousel] = useState(false);
+  const { handleClicChange } = useContext(ExportContext.MovieContext);
+  const [position, setPosition] = useState("");
+  const [destination, setDestination] = useState("");
+  const [carousel, setCarousel] = useState("");
   const [openRules, setOpenRules] = useState(false);
   const [homeLink, setHomeLink] = useState(false);
+  const [type, setType] = useState("movie");
+  const [carouselType, setCarouselType] = useState("credits");
+
+  window.onbeforeunload = () => {
+    return "I don't really know how this works yet";
+  };
 
   const switchCarousel = (id) => {
-    if (position.title) {
-      axios
-        .get(
-          `https://api.themoviedb.org/3/movied}/credits?api_key=${
-            import.meta.env.VITE_API_KEY
-          }&language=fr`
-        )
-        .then((res) => {
-          setCarousel(res.data);
-        });
-    } else {
-      axios
-        .get(
-          `https://api.themoviedb.org/3/person/${id}/movie_credits?api_key=${
-            import.meta.env.VITE_API_KEY
-          }&language=fr`
-        )
-        .then((res) => {
-          setCarousel(res.data);
-        });
-    }
+    axios
+      .get(
+        `https://api.themoviedb.org/3/${type}/${id}/${carouselType}?api_key=${
+          import.meta.env.VITE_API_KEY
+        }&language=fr`
+      )
+      .then((res) => {
+        setCarousel(res.data);
+      });
   };
 
   const switchPosition = (id) => {
-    if (position.title) {
-      axios
-        .get(
-          `https://api.themoviedb.org/3/movie/${id}?api_key=${
-            import.meta.env.VITE_API_KEY
-          }&language=fr`
-        )
-        .then((res) => {
-          setPosition(res.data);
-        });
-    } else {
-      axios
-        .get(
-          `https://api.themoviedb.org/3/person/${id}?api_key=${
-            import.meta.env.VITE_API_KEY
-          }&language=fr`
-        )
-        .then((res) => {
-          setPosition(res.data);
-        });
-    }
-    switchCarousel(position.id);
+    axios
+      .get(
+        `https://api.themoviedb.org/3/${type}/${id}?api_key=${
+          import.meta.env.VITE_API_KEY
+        }&language=fr`
+      )
+      .then((res) => {
+        setPosition(res.data);
+      });
   };
 
   const createDestination = (id) => {
@@ -81,31 +66,40 @@ function Game() {
       });
   };
 
+  const changeData = (id) => {
+    switchPosition(id);
+  };
+
   useEffect(() => {
-    switchPosition(moviesId[0]);
+    changeData(moviesId[0]);
     createDestination(moviesId[1]);
   }, []);
 
-  const [time, setTime] = useState(0);
-  const [minutes, setMinutes] = useState(0);
   useEffect(() => {
+    switchCarousel(position.id);
     setTimeout(() => {
-      if (time < 59) {
-        setTime(time + 1);
+      if (type === "movie") {
+        setType("person");
+        setCarouselType("movie_credits");
       } else {
-        setTime(0);
-        setMinutes(minutes + 1);
+        setType("movie");
+        setCarouselType("credits");
       }
-    }, 1000);
-  }, [time]);
+      handleClicChange();
+    }, 200);
+  }, [position.id]);
+
+  useEffect(() => {}, [carousel]);
 
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.6 }}
+    >
       <div className="flex flex-col">
-        <h1 className="self-center mt-4 font-bold text-xl">
-          {minutes}m {time}s
-        </h1>
-        <Position place={position} />
+        {position !== "" && <Position items={position} />}
         <div
           style={{
             maxWidth: 350,
@@ -114,21 +108,29 @@ function Game() {
             marginRight: "auto",
           }}
         >
-          {carousel ? (
+          {carousel !== "" && (
             <Carousel>
-              {carousel.cast.slice(0, 10).map((e) => (
-                <CarouselElement element={e} key={e.id} />
-              ))}
+              {carousel.cast
+                .sort((a, b) => b.popularity - a.popularity)
+                .slice(0, 30)
+                .map((e) => (
+                  <CarouselElement
+                    element={e}
+                    key={e.id}
+                    changeData={changeData}
+                  />
+                ))}
             </Carousel>
-          ) : (
-            <div />
+          )}
+          {position.id === destination.id && (
+            <StartButton content="Results" link="/results" />
           )}
         </div>
         <div className="m-12 mt-0 mb-6 h-40">
-          <Position place={destination} />
+          <Position items={destination} />
         </div>
       </div>
-      <div className="flex justify-between">
+      <div className="flex justify-between mt-10">
         <button
           type="button"
           onClick={() => setHomeLink(true)}
@@ -137,7 +139,7 @@ function Game() {
           <img src={logo} alt="logo" />
         </button>
         {homeLink && <LogoLink closeLink={setHomeLink} />}
-
+        <Chrono />
         <button
           type="button"
           onClick={() => setOpenRules(true)}
@@ -147,7 +149,7 @@ function Game() {
         </button>
         {openRules && <Rules closeRules={setOpenRules} />}
       </div>
-    </div>
+    </motion.div>
   );
 }
 

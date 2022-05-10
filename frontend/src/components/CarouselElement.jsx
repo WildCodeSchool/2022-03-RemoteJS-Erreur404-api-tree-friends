@@ -1,8 +1,12 @@
 import React from "react";
 
-function CarouselElement({ element }) {
+function CarouselElement({ element, changeData }) {
   return (
-    <div className="w-30 rounded overflow-hidden shadow-lg">
+    <button
+      type="button"
+      className="w-30 rounded overflow-hidden shadow-lg"
+      onClick={() => changeData(element.id)}
+    >
       <img
         className="max-h-20 h-full w-full object-cover object-center"
         src={`https://image.tmdb.org/t/p/w342/${
@@ -20,7 +24,7 @@ function CarouselElement({ element }) {
             : element.release_date.slice(0, 4)}
         </p>
       </div>
-    </div>
+    </button>
   );
 }
 

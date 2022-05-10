@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
+import { motion } from "framer-motion";
+import { FaQuestion } from "react-icons/fa";
 import axios from "axios";
 // assets
 import logo from "../assets/alt-logo.png";
@@ -9,14 +11,17 @@ import Movie from "../components/Movie";
 import StartButton from "../components/StartButton";
 import DifficultySwiper from "../components/DifficultySwiper";
 import ExportContext from "../contexts/MovieContext";
+import Rules from "../components/Rules";
 
 // Data
 import topMovies from "../data/topMovies";
+import easyMovies from "../data/easyMovies";
 
 function Settings() {
   const [movieStart, setMovieStart] = useState();
   const [movieEnd, setMovieEnd] = useState();
   const [difficulty, setDifficulty] = useState("facile");
+  const [openRules, setOpenRules] = useState(false);
   const { handleMoviesIdChange } = useContext(ExportContext.MovieContext);
 
   const generateMovies = (callback, id) => {
@@ -33,10 +38,10 @@ function Settings() {
 
   const getRandomId = () => {
     if (difficulty === "facile") {
-      return topMovies[Math.floor(Math.random() * topMovies.length)];
+      return easyMovies[Math.floor(Math.random() * easyMovies.length)];
     }
     if (difficulty === "moyen") {
-      return Math.floor(Math.random() * (400 - 100) + 100);
+      return topMovies[Math.floor(Math.random() * topMovies.length)];
     }
     return Math.floor(Math.random() * (400 - 100) + 100);
   };
@@ -53,30 +58,60 @@ function Settings() {
   }, []);
 
   return (
-    <div className="flex flex-col">
-      <img
-        className="w-6/12 aspect-square self-center"
-        src={logo}
-        alt="alt-logo"
-      />
+    <motion.div
+      className="flex flex-col"
+      initial={{ opacity: 1 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <div className="flex flex-col">
-        <div className="flex flex-row">
-          {movieStart ? <Movie movie={movieStart} /> : ""}
-          {movieEnd ? <Movie movie={movieEnd} /> : ""}
-        </div>
+        <img
+          className="w-auto max-h-48 aspect-square self-center"
+          src={logo}
+          alt="alt-logo"
+        />
+        <motion.div
+          className="flex flex-col"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <div className="flex flex-row">
+            {movieStart ? <Movie movie={movieStart} type="Start" /> : ""}
+            {movieEnd ? <Movie movie={movieEnd} type="End" /> : ""}
+          </div>
+          <button
+            className="self-center mt-4 transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 duration-200"
+            type="submit"
+            onClick={() => prepareData()}
+          >
+            <img className="h-12" src={dice} alt="dice" />
+          </button>
+          <div className="flex justify-center">
+            <DifficultySwiper
+              difficulty={difficulty}
+              setDifficulty={setDifficulty}
+            />
+          </div>
+        </motion.div>
+        {movieEnd && (
+          <StartButton
+            content="Play"
+            link={`/gametransition/${movieStart.title}/${movieEnd.title}`}
+          />
+        )}
+        <button
+          type="button"
+          onClick={() => setOpenRules(true)}
+          className="absolute bottom-2 right-2 w-12 h-12 bg-gray-50 text-orange-400 font-bold py-2 px-3.5 mx-2 mt-3 rounded-full shadow-inner"
+        >
+          <FaQuestion className="w-5 h-5 shadow-black" />
+        </button>
+        {openRules && <Rules closeRules={setOpenRules} />}
       </div>
-      <button
-        className="self-center m-2"
-        type="submit"
-        onClick={() => prepareData()}
-      >
-        <img className="h-12" src={dice} alt="dice" />
-      </button>
-      <DifficultySwiper
-        onChange={(event) => setDifficulty(event.target.value)}
-      />
-      <StartButton content="Play" link="/game" />
-    </div>
+    </motion.div>
   );
 }
 
