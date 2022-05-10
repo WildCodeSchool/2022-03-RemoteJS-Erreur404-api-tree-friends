@@ -26,7 +26,7 @@ function GameTransition() {
       <video id="background-video" autoPlay muted>
         <source src="/src/assets/movie-countdown.mp4" type="video/mp4" />
       </video>
-      <p className="absolute w-52 bottom-20 max-h-32 text-center text-orange-200 text-2xl">
+      <p className="absolute w-52 bottom-10 max-h-32 text-center text-orange-200 text-2xl">
         Pour arriver à : {end}
       </p>
     </motion.div>

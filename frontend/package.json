@@ -19,6 +19,8 @@
     "react-icons": "^4.3.1",
     "react-modal": "^3.15.1",
     "react-router-dom": "^6.3.0",
+    "react-slick": "^0.29.0",
+    "slick-carousel": "^1.8.1",
     "template-fullstack": "file:.."
   },
   "devDependencies": {

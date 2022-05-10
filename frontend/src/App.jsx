@@ -11,6 +11,8 @@ import Replay from "@pages/Replay";
 import GameTransition from "@pages/GameTransition";
 
 import "./App.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 function App() {
   const location = useLocation();
