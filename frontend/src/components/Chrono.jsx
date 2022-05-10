@@ -27,7 +27,7 @@ function Chrono() {
       <p className="text-xl -mt-1">:</p>
       <div className="flex flex-col items-center">
         <h1 className="text-xl font-semibold -m-1">{seconds}</h1>
-        <p className="text-xs p-0">seconds</p>
+        <p className="text-xs p-0">secondes</p>
       </div>
     </div>
   );

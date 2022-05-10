@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FaQuestion } from "react-icons/fa";
 import { motion } from "framer-motion";
@@ -9,7 +10,6 @@ import CarouselElement from "../components/CarouselElement";
 import Rules from "../components/Rules";
 import LogoLink from "../components/LogoLink";
 import Chrono from "../components/Chrono";
-import StartButton from "../components/StartButton";
 import HistoricElement from "../components/HistoricElement";
 
 import ExportContext from "../contexts/MovieContext";
@@ -27,6 +27,7 @@ function Game() {
   const [type, setType] = useState("movie");
   const [carouselType, setCarouselType] = useState("credits");
   const [historic] = useState([]);
+  const navigate = useNavigate();
   const dots = true;
 
   window.onbeforeunload = () => {
@@ -89,6 +90,10 @@ function Game() {
         setType("movie");
         setCarouselType("credits");
       }
+
+      if (position.id === destination.id && destination.id !== undefined) {
+        navigate("/results");
+      }
       handleClicChange();
     }, 200);
   }, [position.id]);
@@ -129,7 +134,7 @@ function Game() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.4 }}
             >
               <h3 className="text-lg text-cyan-700 font-semibold truncate">
                 {carouselType === "credits"
@@ -157,14 +162,11 @@ function Game() {
               </Slider>
             </motion.div>
           )}
-          {position.id === destination.id && (
-            <StartButton content="Results" link="/results" />
-          )}
         </div>
-        <div id="navigation" className="flex justify-between m-5">
+        <div id="navigation" className="flex justify-between m-4">
           <button
             type="button"
-            className="text-white font-semibold text-lg bg-orange-500 p-2 rounded-lg shadow-md"
+            className="text-white w-32 font-semibold text-lg bg-orange-500 p-2 rounded-lg drop-shadow-lg"
             onClick={() => {
               if (historic.length - 2 > 0) {
                 switchPosition(historic[historic.length - 2].id);
@@ -174,12 +176,13 @@ function Game() {
               }
             }}
           >
-            Annuler
+            <h3 className="p-0 -mt-2">Annuler</h3>
+            <p className="text-xs p-0 -mt-2">le dernier coup</p>
           </button>
           <button
             id="trigger"
             type="button"
-            className="text-white font font-semibold text-lg bg-orange-500 p-2 rounded-lg shadow-md"
+            className="text-white w-32 font-semibold text-lg bg-orange-500 p-2 rounded-lg decoration-purple-100 drop-shadow-lg"
             onClick={() => {
               setTimeout(() => {
                 if (type === "person") {
@@ -191,7 +194,8 @@ function Game() {
               }, 200);
             }}
           >
-            Recommencer
+            <h3 className="p-0 -mt-2">Recommencer</h3>
+            <p className="text-xs p-0 -mt-2">la partie</p>
           </button>
         </div>
         <div
