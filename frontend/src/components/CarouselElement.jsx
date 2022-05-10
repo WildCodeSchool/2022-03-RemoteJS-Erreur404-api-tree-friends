@@ -4,21 +4,21 @@ function CarouselElement({ element, changeData }) {
   return (
     <button
       type="button"
-      className="w-30 rounded overflow-hidden shadow-lg"
+      className="min-w-full rounded shadow-xl"
       onClick={() => changeData(element.id)}
     >
       <img
-        className="max-h-12 h-full w-full object-cover object-center"
+        className="max-h-32 w-full object-cover object-center"
         src={`https://image.tmdb.org/t/p/w342/${
           element.profile_path ? element.profile_path : element.poster_path
         }`}
         alt={element.name ? element.name : element.title}
       />
-      <div className="px-2 h-20">
-        <h3 className="text-sm mb-2 max-h-12">
+      <div className="h-20 flex flex-col">
+        <h3 className="overflowing text-sm my-1 max-h-12 font-semibold leading-none">
           {element.name ? element.name : element.title}
         </h3>
-        <p className="text-gray-700 text-xs">
+        <p className="overflowing text-gray-700 text-xs">
           {element.character
             ? element.character
             : element.release_date.slice(0, 4)}

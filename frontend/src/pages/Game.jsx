@@ -10,6 +10,7 @@ import Rules from "../components/Rules";
 import LogoLink from "../components/LogoLink";
 import Chrono from "../components/Chrono";
 import StartButton from "../components/StartButton";
+import HistoricElement from "../components/HistoricElement";
 
 import ExportContext from "../contexts/MovieContext";
 
@@ -25,6 +26,7 @@ function Game() {
   const [homeLink, setHomeLink] = useState(false);
   const [type, setType] = useState("movie");
   const [carouselType, setCarouselType] = useState("credits");
+  const [historic] = useState([]);
   const dots = true;
 
   window.onbeforeunload = () => {
@@ -52,6 +54,7 @@ function Game() {
       )
       .then((res) => {
         setPosition(res.data);
+        historic.push(res.data);
       });
   };
 
@@ -99,7 +102,7 @@ function Game() {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.6 }}
     >
-      <div className="flex flex-col">
+      <div className="flex flex-col max-h-screen">
         <div className="flex justify-between shadow-md">
           <button
             type="button"
@@ -120,41 +123,93 @@ function Game() {
           {openRules && <Rules closeRules={setOpenRules} />}
         </div>
         {position !== "" && <Position items={position} />}
-        <div
-          style={{
-            maxWidth: 350,
-            maxHeight: 200,
-            marginLeft: "auto",
-            marginRight: "auto",
-          }}
-        >
+        <div className="m-2">
           {carousel !== "" && (
-            <Slider
-              speed={200}
-              slidesToShow={4}
-              slidesToScroll={4}
-              dots={dots}
-              infinite={dots}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
             >
-              {carousel.cast
-                .sort((a, b) => b.popularity - a.popularity)
-                .slice(0, 25)
-                .filter((e) => e.poster_path || e.profile_path)
-                .map((e) => (
-                  <CarouselElement
-                    element={e}
-                    key={e.id}
-                    changeData={changeData}
-                  />
-                ))}
-            </Slider>
+              <h3 className="text-lg text-cyan-700 font-semibold truncate">
+                {carouselType === "credits"
+                  ? `Movies ${position.name} played in :`
+                  : `Actors from ${position.title} :`}
+              </h3>
+              <Slider
+                speed={200}
+                slidesToShow={4}
+                slidesToScroll={4}
+                dots={dots}
+                infinite={dots}
+              >
+                {carousel.cast
+                  .sort((a, b) => b.popularity - a.popularity)
+                  .slice(0, 25)
+                  .filter((e) => e.poster_path || e.profile_path)
+                  .map((e) => (
+                    <CarouselElement
+                      element={e}
+                      key={e.id}
+                      changeData={changeData}
+                    />
+                  ))}
+              </Slider>
+            </motion.div>
           )}
           {position.id === destination.id && (
             <StartButton content="Results" link="/results" />
           )}
         </div>
-        <div className="mt-2 h-40">
-          <Position items={destination} />
+        <div id="navigation" className="flex justify-between m-5">
+          <button
+            type="button"
+            className="text-white font-semibold text-lg bg-orange-500 p-2 rounded-lg shadow-md"
+            onClick={() => {
+              if (historic.length - 2 > 0) {
+                switchPosition(historic[historic.length - 2].id);
+                historic.pop();
+                historic.pop();
+                handleClicChange();
+              }
+            }}
+          >
+            Annuler
+          </button>
+          <button
+            id="trigger"
+            type="button"
+            className="text-white font font-semibold text-lg bg-orange-500 p-2 rounded-lg shadow-md"
+            onClick={() => {
+              setTimeout(() => {
+                if (type === "person") {
+                  setType("movie");
+                  setCarouselType("credits");
+                }
+                handleClicChange();
+                setPosition(historic[0]);
+              }, 200);
+            }}
+          >
+            Recommencer
+          </button>
+        </div>
+        <div
+          id="historic"
+          className="w-full flex justify-between h-40 border-2 bottom-0"
+        >
+          <div className="flex flex-col items-center">
+            <h2 className="text-xl text-cyan-700 font-semibold max-h-12 -mb-3 p-0">
+              Start
+            </h2>
+            {carousel && <HistoricElement items={historic[0]} />}
+          </div>
+          <div className="flex flex-col items-center">
+            <h2 className="text-xl text-cyan-700 font-semibold max-h-12 -mb-3 p-0">
+              End
+            </h2>
+            {carousel && <HistoricElement items={destination} />}
+          </div>
         </div>
       </div>
     </motion.div>
