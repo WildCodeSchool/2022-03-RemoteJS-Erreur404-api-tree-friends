@@ -2,16 +2,16 @@ import React from "react";
 
 function Position({ items }) {
   return (
-    <div className="w-auto rounded-lg overflow-hidden shadow-lg m-4 object-cover">
+    <div className="rounded-lg w-auto overflow-hidden shadow-lg m-2 object-cover  flex justify-between items-center">
       <img
-        className="max-h-32 h-full w-full object-cover object-center"
+        className="w-1/2 object-cover"
         src={`https://image.tmdb.org/t/p/w342/${
           items.poster_path ? items.poster_path : items.profile_path
         }`}
         alt="position"
       />
-      <div className="px-2 py-3 h-12 flex justify-around">
-        <h3 className="font-bold text-xl">
+      <div className="flex flex-col items-center mr-8">
+        <h3 className="font-semibold text-cyan-700 pl-2 text-xl leading-none overflowing">
           {items.title ? items.title : items.name}
         </h3>
         <p className="text-gray-700 text-base">
