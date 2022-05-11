@@ -96,7 +96,7 @@ function Settings() {
             />
           </div>
         </motion.div>
-        {movieEnd && (
+        {movieEnd && movieStart && (
           <StartButton
             content="Play"
             link={`/gametransition/${movieStart.title}/${movieEnd.title}`}
