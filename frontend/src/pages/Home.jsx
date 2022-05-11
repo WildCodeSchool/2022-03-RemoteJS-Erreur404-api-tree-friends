@@ -1,36 +1,38 @@
-import Counter from "@components/Counter";
-import logo from "@assets/logo.svg";
+import React from "react";
+import { motion } from "framer-motion";
 
-export default function Home() {
+import Input from "../components/input";
+import StartButton from "../components/StartButton";
+
+import logo from "../assets/alt-logo.png";
+
+function Home() {
   return (
-    <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      <p>Hello Vite + React !</p>
-
-      <Counter />
-
-      <p>
-        Edit <code>App.jsx</code> and save to test HMR updates.
-      </p>
-      <p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        {" | "}
-        <a
-          className="App-link"
-          href="https://vitejs.dev/guide/features.html"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Vite Docs
-        </a>
-      </p>
-    </header>
+    <div className="flex flex-col">
+      <img
+        className="w-auto max-h-48  aspect-square self-center"
+        src={logo}
+        alt="logo"
+      />
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <h1 className="text-2xl leading-normal font-bold mb-12 m-14 ">
+          <p className="text-orange-400 flex left">
+            BIENVENUE SUR MOVIE WARS, UN JEU QUI VOUS INVITE A
+          </p>
+          <p className="text-cyan-700 flex left">
+            CONNECTER DEUX FILMS ENTRE EUX.
+          </p>
+        </h1>
+        <Input />
+      </motion.div>
+      <StartButton content="Start" link="/settings" />
+    </div>
   );
 }
+
+export default Home;

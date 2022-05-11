@@ -1,0 +1,39 @@
+.button-link {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  text-decoration: none;
+}
+
+button {
+  background: #eb910a;
+}
+
+.start-button {
+  display: flex;
+  justify-content: center;
+  width: 165px;
+  height: 45px;
+  background: #eb910a;
+  color: white;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 25px;
+  font-weight: bold;
+  padding-top: 10px;
+}
+
+.button-arrow {
+  justify-content: flex-start;
+  width: 0;
+  height: 0;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  border-left: 12px solid white;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.start {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 18px;
+}
